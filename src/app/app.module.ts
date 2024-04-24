@@ -13,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -42,7 +43,7 @@ const appRoutes: Routes = [
     UserProfileComponent,
     DirectorComponent,
     GenreComponent,
-    MovieSynopsisComponent
+    MovieSynopsisComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +58,8 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule
 
   ],
   providers: [
