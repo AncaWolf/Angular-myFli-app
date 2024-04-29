@@ -69,16 +69,39 @@ export class MovieCardComponent {
   }
 
   getFavouriteMovies(): void {
-    this.user = this.fetchApiData.getOneUser();
-    // this.userData.FavouriteMovies = this.user.FavouriteMovies;
-    this.FavouriteMovies = this.user.FavouriteMovies;
-    console.log('Favourite movies of this user', this.FavouriteMovies);
+    this.fetchApiData.getOneUser().subscribe(user => {
+      this.user = user;
+      this.FavouriteMovies = user.FavouriteMovies || [];
+      console.log('Favourite movies of this user', this.FavouriteMovies);
+    });
   }
 
+
   isFavouriteMovie(movieID: string): boolean {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return user.FavouriteMovies.indexOf(movieID) >= 0;
+    const userData = localStorage.getItem('user');
+    if (!userData) {
+      console.log('No user data available in local storage.');
+      return false;
+    }
+    try {
+      const user = JSON.parse(userData);
+      return user.FavouriteMovies && user.FavouriteMovies.indexOf(movieID) >= 0;
+    } catch (e) {
+      console.error('Error parsing user data:', e);
+      return false;
+    }
   }
+  // getFavouriteMovies(): void {
+  //   this.user = this.fetchApiData.getOneUser();
+  //   // this.userData.FavouriteMovies = this.user.FavouriteMovies;
+  //   this.FavouriteMovies = this.user.FavouriteMovies;
+  //   console.log('Favourite movies of this user', this.FavouriteMovies);
+  // }
+
+  // isFavouriteMovie(movieID: string): boolean {
+  //   const user = JSON.parse(localStorage.getItem('user') || '{}');
+  //   return user.FavouriteMovies.indexOf(movieID) >= 0;
+  // }
 
   addFavouriteMovie(movie: string): void {
     this.user = this.fetchApiData.getOneUser();
