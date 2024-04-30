@@ -36,11 +36,25 @@ $Angular-myFlix--theme: mat.define-light-theme((color: (primary: $Angular-myFlix
 html,
 body {
   height: 100%;
-  background-color: #14052c;
-  color: #d8b2cf;
-  font-size: 18px;
+  background-color: #e2a0c4;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 h1 {
-  font-size: 100px;
+  font-size: 3em;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+}
+
+.container {
+  max-width: 200px;
+  margin: 0 auto;
 }
